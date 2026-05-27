@@ -417,6 +417,23 @@ async function askQuestion() {
                 </div>
                 `;
 
+                // =========================================
+// AI VOICE RESPONSE
+// =========================================
+
+const speech =
+    new SpeechSynthesisUtterance(
+        data.answer
+    );
+
+speech.lang = "en-US";
+
+speech.rate = 1;
+
+window.speechSynthesis.speak(
+    speech
+);
+
             createBackButton();
             generateDashboard(data.answer);
 
@@ -604,4 +621,103 @@ function generateDashboard(answer) {
             }
         }
     });
+}
+// =========================================
+// VOICE INPUT FEATURE
+// =========================================
+
+const voiceBtn =
+    document.getElementById(
+        "voiceBtn"
+    );
+
+
+if (voiceBtn) {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if (SpeechRecognition) {
+
+        const recognition =
+            new SpeechRecognition();
+
+        recognition.lang = "en-US";
+
+        recognition.continuous = false;
+
+        recognition.interimResults = false;
+
+
+        voiceBtn.addEventListener(
+            "click",
+            () => {
+
+                voiceBtn.innerHTML =
+                    "🎙️";
+
+                voiceBtn.classList.add(
+                    "listening"
+                );
+
+                recognition.start();
+            }
+        );
+
+
+        recognition.onresult =
+            function(event) {
+
+                const transcript =
+                    event.results[0][0]
+                    .transcript;
+
+                questionInput.value =
+                    transcript;
+
+                voiceBtn.innerHTML =
+                    "🎙️";
+
+                voiceBtn.classList.remove(
+                    "listening"
+                );
+
+                askQuestion();
+            };
+
+
+        recognition.onerror =
+            function() {
+
+                voiceBtn.innerHTML =
+                    "🎙️";
+
+                voiceBtn.classList.remove(
+                    "listening"
+                );
+
+                alert(
+                    "Voice recognition failed"
+                );
+            };
+
+
+        recognition.onend =
+            function() {
+
+                voiceBtn.innerHTML =
+                    "🎙️";
+
+                voiceBtn.classList.remove(
+                    "listening"
+                );
+            };
+
+    } else {
+
+        voiceBtn.style.display =
+            "none";
+    }
 }
