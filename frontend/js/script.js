@@ -240,6 +240,10 @@ function formatAnswer(answer) {
 // CREATE BACK BUTTON
 // =========================================
 
+// =========================================
+// CREATE BACK BUTTON
+// =========================================
+
 function createBackButton() {
 
     const existingButton =
@@ -271,10 +275,10 @@ function createBackButton() {
         "center";
 
     wrapper.style.marginTop =
-        "30px";
+        "40px";
 
     wrapper.style.marginBottom =
-        "60px";
+        "70px";
 
     wrapper.innerHTML =
         `
@@ -283,9 +287,9 @@ function createBackButton() {
             class="primary-btn"
             style="
                 text-decoration:none;
-                padding:16px 34px;
-                border-radius:14px;
-                font-size:16px;
+                padding:18px 36px;
+                border-radius:16px;
+                font-size:17px;
                 font-weight:600;
                 display:inline-flex;
                 align-items:center;
@@ -297,19 +301,20 @@ function createBackButton() {
         </a>
         `;
 
-    // ADD BUTTON BELOW RESPONSE BOX
+    // =========================================
+    // ADD BELOW DASHBOARD
+    // =========================================
 
-    const answerBox =
-        document.getElementById(
-            "answerBox"
+    const dashboard =
+        document.querySelector(
+            ".dashboard-section"
         );
 
-    answerBox.insertAdjacentElement(
+    dashboard.insertAdjacentElement(
         "afterend",
         wrapper
     );
 }
-
 
 // =========================================
 // ASK QUESTION FUNCTION
@@ -413,6 +418,7 @@ async function askQuestion() {
                 `;
 
             createBackButton();
+            generateDashboard(data.answer);
 
         } else {
 
@@ -517,3 +523,149 @@ async function loadSuggestions() {
 
 
 loadSuggestions();
+
+function generateDashboard(answer) {
+
+    // WORD COUNT
+
+    const words =
+        answer.split(/\s+/).length;
+
+    document.getElementById(
+        "wordCount"
+    ).innerText = words;
+
+
+    // SENTENCE COUNT
+
+    const sentences =
+        answer.split(/[.!?]+/).length;
+
+    document.getElementById(
+        "sentenceCount"
+    ).innerText = sentences;
+
+
+    // READING TIME
+
+    const readingTime =
+        Math.ceil(words / 200);
+
+    document.getElementById(
+        "readingTime"
+    ).innerText =
+        `${readingTime} min`;
+
+
+    // COMPLEXITY SCORE
+
+    const complexity =
+        Math.min(
+            95,
+            Math.floor(words / 12)
+        );
+
+    document.getElementById(
+        "complexityScore"
+    ).innerText =
+        `${complexity}%`;
+
+
+    // KEYWORDS
+
+    const keywordContainer =
+        document.getElementById(
+            "keywordContainer"
+        );
+
+    keywordContainer.innerHTML = "";
+
+    const commonWords = [
+        "the","and","is","to","of",
+        "in","for","a","on","with",
+        "that","this","as","are"
+    ];
+
+    const wordFrequency = {};
+
+    answer
+        .toLowerCase()
+        .split(/\W+/)
+        .forEach(word => {
+
+            if (
+                word.length > 4 &&
+                !commonWords.includes(word)
+            ) {
+
+                wordFrequency[word] =
+                    (wordFrequency[word] || 0) + 1;
+            }
+        });
+
+    const keywords =
+        Object.entries(wordFrequency)
+            .sort((a,b)=>b[1]-a[1])
+            .slice(0,10);
+
+    keywords.forEach(keyword => {
+
+        const tag =
+            document.createElement("div");
+
+        tag.className =
+            "keyword-tag";
+
+        tag.innerText =
+            keyword[0];
+
+        keywordContainer.appendChild(tag);
+    });
+
+
+    // CHART
+
+    const ctx =
+        document.getElementById(
+            "topicChart"
+        );
+
+    new Chart(ctx, {
+
+        type:"doughnut",
+
+        data:{
+
+            labels:[
+                "Research",
+                "Methodology",
+                "Results",
+                "Analysis",
+                "Concepts"
+            ],
+
+            datasets:[{
+
+                data:[
+                    25,
+                    20,
+                    18,
+                    22,
+                    15
+                ]
+            }]
+        },
+
+        options:{
+
+            responsive:true,
+
+            plugins:{
+
+                legend:{
+                    position:"bottom"
+                }
+            }
+        }
+    });
+}

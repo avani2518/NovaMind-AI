@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>NovaMind AI</title>
 
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="favicon.ico"
+    >
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-    <meta name="theme-color" content="#7a5cff">
+    <meta
+        name="theme-color"
+        content="#7a5cff"
+    >
+
 </head>
 
 <body>
@@ -20,19 +40,45 @@
     <div class="background-blur one"></div>
     <div class="background-blur two"></div>
 
+
+    <!-- ========================================= -->
+    <!-- NAVBAR -->
+    <!-- ========================================= -->
+
     <nav class="navbar">
 
-        <a href="index.html" class="logo">
+        <a
+            href="index.html"
+            class="logo"
+        >
             NovaMind
         </a>
 
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="upload.html">Upload</a>
-            <a href="result.html" class="active-link">Ask AI</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="upload.html">
+                Upload
+            </a>
+
+            <a
+                href="result.html"
+                class="active-link"
+            >
+                Ask AI
+            </a>
+
         </div>
 
     </nav>
+
+
+    <!-- ========================================= -->
+    <!-- ASK PAGE -->
+    <!-- ========================================= -->
 
     <section class="ask-page">
 
@@ -44,17 +90,27 @@
                     Ask Questions From Your Documents
                 </h1>
 
+
+                <!-- ========================================= -->
+                <!-- SUGGESTED QUESTIONS -->
+                <!-- ========================================= -->
+
                 <div class="suggestions-section">
 
-    <h2>
-        Suggested Questions
-    </h2>
+                    <h2>
+                        Suggested Questions
+                    </h2>
 
-    <div id="suggestionsContainer">
+                    <div id="suggestionsContainer">
 
-    </div>
+                    </div>
 
-</div>
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- QUERY BOX -->
+                <!-- ========================================= -->
 
                 <div class="query-box">
 
@@ -72,20 +128,119 @@
 
             </div>
 
+
+            <!-- ========================================= -->
+            <!-- AI RESPONSE -->
+            <!-- ========================================= -->
+
             <div
                 class="answer-box"
                 id="answerBox"
             >
 
                 <div class="answer-placeholder">
+
                     AI answers will appear here...
+
                 </div>
 
             </div>
 
+
+            <!-- ========================================= -->
+            <!-- AI DASHBOARD -->
+            <!-- ========================================= -->
+
+            <section class="dashboard-section">
+
+                <h2 class="dashboard-title">
+
+                    AI Visual Summary Dashboard
+
+                </h2>
+
+
+                <!-- ========================================= -->
+                <!-- STATS -->
+                <!-- ========================================= -->
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-card">
+
+                        <h3>Total Words</h3>
+
+                        <p id="wordCount">0</p>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <h3>Total Sentences</h3>
+
+                        <p id="sentenceCount">0</p>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <h3>Reading Time</h3>
+
+                        <p id="readingTime">0 min</p>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <h3>Complexity Score</h3>
+
+                        <p id="complexityScore">0%</p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- CHART -->
+                <!-- ========================================= -->
+
+                <div class="chart-container">
+
+                    <canvas id="topicChart"></canvas>
+
+                </div>
+
+
+                <!-- ========================================= -->
+                <!-- KEYWORDS -->
+                <!-- ========================================= -->
+
+                <div class="keyword-section">
+
+                    <h3>
+                        Important Keywords
+                    </h3>
+
+                    <div id="keywordContainer">
+
+                    </div>
+
+                </div>
+
+            </section>
+
         </div>
 
     </section>
+
+
+    <!-- ========================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================= -->
 
     <footer class="footer">
 
@@ -95,7 +250,23 @@
 
     </footer>
 
-    <script defer src="js/script.js"></script>
+
+    <!-- ========================================= -->
+    <!-- CHART JS -->
+    <!-- ========================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- ========================================= -->
+    <!-- SCRIPT -->
+    <!-- ========================================= -->
+
+    <script
+        defer
+        src="js/script.js"
+    ></script>
 
 </body>
+
 </html>
