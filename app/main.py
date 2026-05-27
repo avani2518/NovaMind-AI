@@ -17,7 +17,6 @@ from dotenv import load_dotenv
 from app.ingest import ingest_document, extract_text_from_pdf
 from app.search import semantic_search
 from app.generate import generate_answer
-from app.suggestions import generate_suggested_questions
 
 import os
 import threading
@@ -292,33 +291,6 @@ def ask_question(req: QueryRequest):
             detail=str(e)
         )
     
-@app.get("/suggestions")
-
-def get_suggestions():
-
-    try:
-
-        chunks = semantic_search(
-            "document overview",
-            "faq_kb",
-            5
-        )
-
-        questions = generate_suggested_questions(
-            chunks
-        )
-
-        return {
-            "status":"success",
-            "questions":questions
-        }
-
-    except Exception as e:
-
-        raise HTTPException(
-            status_code=500,
-            detail=str(e)
-        )
 
 # ---------------------------------------------------
 # Startup Message
