@@ -229,6 +229,7 @@ function formatAnswer(answer) {
         .replace(/\n{3,}/g, "\n\n")
 
         // Normal line breaks
+        .replace(/\n\n/g, "<br><br>")
         .replace(/\n/g, "<br>");
 
     return formattedAnswer;
@@ -453,59 +454,60 @@ if (askBtn) {
 // LOAD AI DASHBOARD
 // =========================================
 
-async function loadDashboard() {
+async function loadSuggestions() {
 
-    const summary =
+    const container =
         document.getElementById(
-            "summaryContent"
+            "suggestionsContainer"
         );
 
-    const findings =
-        document.getElementById(
-            "findingsContent"
-        );
-
-    const concepts =
-        document.getElementById(
-            "conceptsContent"
-        );
-
-    const analytics =
-        document.getElementById(
-            "analyticsContent"
-        );
-
-    if (!summary) return;
+    if (!container) return;
 
     try {
 
         const response =
             await fetch(
-                "http://127.0.0.1:8000/dashboard"
+                "http://127.0.0.1:8000/suggestions"
             );
 
         const data =
             await response.json();
 
-        summary.innerHTML =
-            formatAnswer(
-                data.summary
-            );
+        if (response.ok) {
 
-        findings.innerHTML =
-            formatAnswer(
-                data.findings
-            );
+            container.innerHTML = "";
 
-        concepts.innerHTML =
-            formatAnswer(
-                data.concepts
-            );
+            data.questions.forEach(
+                (question) => {
 
-        analytics.innerHTML =
-            formatAnswer(
-                data.analytics
+                    const button =
+                        document.createElement(
+                            "button"
+                        );
+
+                    button.className =
+                        "suggestion-btn";
+
+                    button.innerText =
+                        question;
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            questionInput.value =
+                                question;
+
+                            askQuestion();
+                        }
+                    );
+
+                    container.appendChild(
+                        button
+                    );
+                }
             );
+        }
 
     } catch (error) {
 
@@ -514,4 +516,4 @@ async function loadDashboard() {
 }
 
 
-loadDashboard();
+loadSuggestions();

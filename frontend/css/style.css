@@ -780,3 +780,107 @@ body{
 
     font-size:15px;
 }
+
+.suggestions-section{
+
+    margin-bottom:35px;
+}
+
+
+.suggestions-section h2{
+
+    color:#7a5cff;
+
+    margin-bottom:20px;
+
+    font-size:26px;
+}
+
+
+#suggestionsContainer{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+}
+
+
+.suggestion-btn{
+
+    background:rgba(
+        255,
+        255,
+        255,
+        0.7
+    );
+
+    border:none;
+
+    padding:14px 22px;
+
+    border-radius:16px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    transition:0.3s ease;
+
+    box-shadow:
+        0 10px 30px rgba(
+            122,
+            92,
+            255,
+            0.08
+        );
+
+    backdrop-filter:blur(10px);
+}
+
+
+.suggestion-btn:hover{
+
+    transform:translateY(-3px);
+
+    background:#7a5cff;
+
+    color:white;
+}
+
+.answer-box{
+
+    width:100%;
+
+    min-height:400px;
+
+    background:rgba(
+        255,
+        255,
+        255,
+        0.72
+    );
+
+    backdrop-filter:blur(16px);
+
+    border-radius:30px;
+
+    padding:50px;
+
+    margin-top:35px;
+
+    overflow-wrap:break-word;
+
+    line-height:1.9;
+
+    box-shadow:
+        0 20px 50px rgba(
+            122,
+            92,
+            255,
+            0.08
+        );
+}

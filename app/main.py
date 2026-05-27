@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 from app.ingest import ingest_document, extract_text_from_pdf
 from app.search import semantic_search
 from app.generate import generate_answer
-from app.dashboard import generate_dashboard
+from app.suggestions import generate_suggested_questions
 
 import os
 import threading
@@ -135,7 +135,7 @@ class QueryRequest(BaseModel):
 
     question: str
     collection_name: str = "faq_kb"
-    top_k: int = 3
+    top_k: int = 8
 
 
 class IngestTextRequest(BaseModel):
@@ -292,21 +292,33 @@ def ask_question(req: QueryRequest):
             detail=str(e)
         )
     
-@app.get("/dashboard")
-def dashboard():
+@app.get("/suggestions")
 
-    chunks = semantic_search(
-        "summarize document",
-        "faq_kb",
-        8
-    )
+def get_suggestions():
 
-    data = generate_dashboard(
-        chunks
-    )
+    try:
 
-    return data
+        chunks = semantic_search(
+            "document overview",
+            "faq_kb",
+            5
+        )
 
+        questions = generate_suggested_questions(
+            chunks
+        )
+
+        return {
+            "status":"success",
+            "questions":questions
+        }
+
+    except Exception as e:
+
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
 
 # ---------------------------------------------------
 # Startup Message
