@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaMind AI</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta name="theme-color" content="#7a5cff">
+</head>
+
+<body>
+
+<div class="background-blur one"></div>
+<div class="background-blur two"></div>
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+        NovaMind
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="upload.html" class="active-link">Upload</a>
+        <a href="result.html">Ask AI</a>
+    </div>
+
+</nav>
+
+<section class="upload-page">
+
+    <div class="upload-container">
+
+        <div class="upload-left">
+
+            <p class="tag">
+                AI Powered PDF Intelligence
+            </p>
+
+            <h1>
+                Upload <br>
+                Your Documents
+            </h1>
+
+            <p class="subtitle">
+                Convert PDFs into searchable AI knowledge instantly.
+            </p>
+
+            <div class="features">
+
+                <div class="feature-card">
+                    ⚡ Fast Semantic Embeddings
+                </div>
+
+                <div class="feature-card">
+                    🧠 Intelligent AI Search
+                </div>
+
+                <div class="feature-card">
+                    📄 PDF Knowledge Retrieval
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="upload-right">
+
+            <div class="upload-card">
+
+                <div class="upload-icon">
+                    ☁️
+                </div>
+
+                <h2>Upload PDF</h2>
+
+                <p class="small-text">
+                    Secure AI document processing
+                </p>
+
+                <form id="uploadForm">
+
+                    <label class="custom-upload">
+
+                        <input
+                            type="file"
+                            id="pdfFile"
+                            accept=".pdf"
+                        >
+
+                        <span>
+                            Select PDF File
+                        </span>
+
+                    </label>
+
+                    <div id="fileName"></div>
+
+                    <button
+                        type="submit"
+                        class="primary-btn upload-btn"
+                    >
+                        Upload & Process
+                    </button>
+
+                </form>
+
+                <div id="uploadStatus"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <p>
+        NovaMind AI © 2026 • Intelligent Document Retrieval Platform
+    </p>
+
+</footer>
+
+<script defer src="js/script.js"></script>
+
+</body>
+</html>

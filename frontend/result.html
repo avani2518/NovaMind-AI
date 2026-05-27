@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaMind AI</title>
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <meta name="theme-color" content="#7a5cff">
+</head>
+
+<body>
+
+<div class="background-blur one"></div>
+<div class="background-blur two"></div>
+
+<nav class="navbar">
+    <a href="index.html" class="logo">
+        NovaMind
+    </a>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="upload.html">Upload</a>
+        <a href="result.html" class="active-link">Ask AI</a>
+    </div>
+</nav>
+
+<section class="ask-page">
+
+    <div class="ask-container">
+
+        <h1>Ask Questions From Your Documents</h1>
+
+        <div class="query-box">
+
+            <input
+                type="text"
+                id="questionInput"
+                placeholder="Ask anything from your uploaded PDFs..."
+            >
+
+            <button id="askBtn">
+                Ask AI
+            </button>
+
+        </div>
+
+        <div class="answer-box" id="answerBox">
+
+            <div class="answer-placeholder">
+                AI answers will appear here...
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <p>
+        NovaMind AI © 2026 • Intelligent Document Retrieval Platform
+    </p>
+
+</footer>
+
+<script defer src="js/script.js"></script>
+
+</body>
+</html>
