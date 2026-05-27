@@ -448,3 +448,70 @@ if (askBtn) {
         askQuestion
     );
 }
+
+// =========================================
+// LOAD AI DASHBOARD
+// =========================================
+
+async function loadDashboard() {
+
+    const summary =
+        document.getElementById(
+            "summaryContent"
+        );
+
+    const findings =
+        document.getElementById(
+            "findingsContent"
+        );
+
+    const concepts =
+        document.getElementById(
+            "conceptsContent"
+        );
+
+    const analytics =
+        document.getElementById(
+            "analyticsContent"
+        );
+
+    if (!summary) return;
+
+    try {
+
+        const response =
+            await fetch(
+                "http://127.0.0.1:8000/dashboard"
+            );
+
+        const data =
+            await response.json();
+
+        summary.innerHTML =
+            formatAnswer(
+                data.summary
+            );
+
+        findings.innerHTML =
+            formatAnswer(
+                data.findings
+            );
+
+        concepts.innerHTML =
+            formatAnswer(
+                data.concepts
+            );
+
+        analytics.innerHTML =
+            formatAnswer(
+                data.analytics
+            );
+
+    } catch (error) {
+
+        console.error(error);
+    }
+}
+
+
+loadDashboard();

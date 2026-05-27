@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 from app.ingest import ingest_document, extract_text_from_pdf
 from app.search import semantic_search
 from app.generate import generate_answer
+from app.dashboard import generate_dashboard
 
 import os
 import threading
@@ -290,6 +291,21 @@ def ask_question(req: QueryRequest):
             status_code=500,
             detail=str(e)
         )
+    
+@app.get("/dashboard")
+def dashboard():
+
+    chunks = semantic_search(
+        "summarize document",
+        "faq_kb",
+        8
+    )
+
+    data = generate_dashboard(
+        chunks
+    )
+
+    return data
 
 
 # ---------------------------------------------------
